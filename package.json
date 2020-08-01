@@ -12,9 +12,15 @@
     "lint": "eslint .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn format"
+    }
+  },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.2",
+    "husky": "^4.2.5",
     "next": "^9.5.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
