@@ -1,0 +1,19 @@
+@import '../../../pages/vars.scss';
+
+.container {
+  display: flex;
+  &__main {
+    flex: 1 0 0;
+    margin: 0 $sp;
+    padding: $sp 0;
+    min-height: calc(100vh - 240px);
+    @media screen and (min-width: 360px) {
+      margin: 0 $mp;
+      padding: $mp 0;
+    }
+    @media screen and (min-width: 1024px) {
+      margin: 0 $lp;
+      padding: $lp 0;
+    }
+  }
+}

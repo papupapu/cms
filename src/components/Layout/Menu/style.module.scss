@@ -1,0 +1,35 @@
+@import '../../../pages/vars.scss';
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: $sp 0 0;
+  width: 250px;
+  background: #333;
+  overflow: hidden;
+  transition: width 0.3s linear;
+  @media screen and (min-width: 360px) {
+    padding: $mp 0;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: $lp 0;
+  }
+  &-closed {
+    width: 0;
+  }
+  &__item {
+    padding: 0 $sp;
+    line-height: 26px;
+    @media screen and (min-width: 360px) {
+      padding: 0 $mp;
+    }
+    @media screen and (min-width: 1024px) {
+      padding: 0 $lp;
+    }
+    &_a {
+      font-size: 13px;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
