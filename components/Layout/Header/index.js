@@ -1,4 +1,16 @@
 import React from 'react';
 
-const Header = () => <header>header</header>;
+import styles from './style.module.scss';
+
+const Header = () => (
+  <header className={styles.header}>
+    <a href="/posts" title="Lista">
+      Lista
+    </a>
+    -
+    <a href="/posts/create" title="Crea">
+      Crea
+    </a>
+  </header>
+);
 export default Header;

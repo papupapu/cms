@@ -1,0 +1,11 @@
+@import '../../../pages/vars.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  border-bottom: $border;
+}

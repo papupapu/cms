@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import HTTPLib from '../../lib/http';
 
+import Page from '../../components/Layout/Page';
+import List from '../../components/PostList/List';
+
+const httpLib = new HTTPLib();
+
 export async function getStaticProps() {
-  const httpLib = new HTTPLib();
   const res = await httpLib.getPostsList();
   return {
     props: {
@@ -20,20 +24,25 @@ const defaultProps = {
   posts: [],
 };
 
-const PostList = ({ posts }) => (
-  <>
-    <h1>{`ci sono ${posts.length} post`}</h1>
-    <ul>
-      {posts.map((post) => (
-        <li key={post._id}>
-          <a href={`/posts/${post._id}`} title={post.title}>
-            {post.title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </>
-);
+const PostList = ({ posts }) => {
+  const [list, updateList] = useState(posts);
+
+  const deletePost = async (id) => {
+    const doDelete = await httpLib.deletePost(id);
+    if (doDelete.success) {
+      const newList = list.filter((post) => post._id !== id);
+      updateList(newList);
+    } else {
+      console.log('ooooops');
+    }
+  };
+  return (
+    <Page pageType="list">
+      <p>{`ci sono ${list.length} post`}</p>
+      <List posts={list} deleteAction={deletePost} />
+    </Page>
+  );
+};
 
 PostList.propTypes = propTypes;
 PostList.defaultProps = defaultProps;

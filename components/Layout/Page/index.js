@@ -4,6 +4,8 @@ import PropTypes, { oneOfType } from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
 
+import styles from './style.module.scss';
+
 const propTypes = {
   pageType: PropTypes.string,
   children: oneOfType([
@@ -23,7 +25,7 @@ const Page = ({ pageType, children }) => {
   return (
     <>
       {pageType !== 'full' && <Header />}
-      {children}
+      <main className={styles.main}>{children}</main>
       {pageType !== 'full' && <Footer />}
     </>
   );

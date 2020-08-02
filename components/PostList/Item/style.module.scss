@@ -1,0 +1,30 @@
+@import '../../../pages/vars.scss';
+
+.item {
+  display: flex;
+  align-items: center;
+  margin: 0 0 8px;
+  padding: 0 24px;
+  height: 48px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #fff;
+  border: $border;
+
+  &__btns {
+    margin-left: auto;
+    &__btn {
+      margin-left: 16px;
+      font-size: 12px;
+      font-weight: normal;
+      color: #000;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      border: 0 none;
+      &:hover {
+        color: #f90;
+      }
+    }
+  }
+}

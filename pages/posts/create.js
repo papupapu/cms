@@ -1,25 +1,21 @@
 import React from 'react';
 
-import HTTPLib from '../../lib/http';
+import Page from '../../components/Layout/Page';
+import Post from '../../components/Post';
 
-const Post = () => {
-  const httpLib = new HTTPLib();
-  const createPost = async () => {
-    const create = await httpLib.post('/api/post', {
-      title: 'titolo prova',
-      subtitle: 'sottotitolo prova',
-      content: 'contenuto prova',
-    });
-    console.log(create);
-  };
+const CreatePost = () => {
   return (
-    <p>
-      io creo un post
-      <button type="button" onClick={createPost}>
-        così
-      </button>
-    </p>
+    <Page pageType="list">
+      <Post
+        post={{
+          title: '',
+          subtitle: '',
+          content: '',
+        }}
+        action="create"
+      />
+    </Page>
   );
 };
 
-export default Post;
+export default CreatePost;
