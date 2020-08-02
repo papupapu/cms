@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Page from '../../components/Layout/Page';
-import Post from '../../components/Post';
+import Page from '../../src/components/Layout/Page';
+import Post from '../../src/components/Post';
 
 const CreatePost = () => {
   return (

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import DefaultErrorPage from 'next/error';
 
-import Page from '../../components/Layout/Page';
-import Post from '../../components/Post';
+import Page from '../../src/components/Layout/Page';
+import Post from '../../src/components/Post';
 
-import Api from '../../lib/http/Post';
+import Api from '../../src/lib/http/Post';
 
 const api = new Api();
 

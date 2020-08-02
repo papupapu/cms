@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "format": "prettier --write pages/**/*.{js,css,scss} components/**/*.{js,scss} lib/**/*.js"
+    "format": "prettier --write pages/**/*.{js,css,scss} src/**/*.{js,scss}"
   },
   "husky": {
     "hooks": {

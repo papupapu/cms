@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Page from '../components/Layout/Page';
+import Page from '../src/components/Layout/Page';
 
 const Home = () => (
   <Page pageType="list">

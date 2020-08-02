@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Api from '../../lib/http/Post';
+import Api from '../../src/lib/http/Post';
 
-import Page from '../../components/Layout/Page';
-import List from '../../components/PostList/List';
+import Page from '../../src/components/Layout/Page';
+import List from '../../src/components/PostList/List';
 
 const api = new Api();
 

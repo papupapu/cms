@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes, { oneOfType, instanceOf } from 'prop-types';
 
-import LayoutContext from '../context/LayoutContext';
+import LayoutContext from '../src/context/LayoutContext';
 
 import './reset.css';
 
