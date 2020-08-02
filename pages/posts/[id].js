@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { useRouter } from 'next/router';
 import DefaultErrorPage from 'next/error';
 
 import Page from '../../components/Layout/Page';
 import Post from '../../components/Post';
 
-import HTTPLib from '../../lib/http';
+import Api from '../../lib/http/Post';
 
-const httpLib = new HTTPLib();
+const api = new Api();
 
 export async function getStaticPaths() {
-  const res = await httpLib.getPostsList();
-  const paths = res.data.map((post) => ({ params: { id: post._id } }));
+  const apiResponse = await api.getPostsList();
+  const paths = apiResponse.data.map((post) => ({ params: { id: post._id } }));
   return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
-  const res = await httpLib.getPost(params.id);
+  const apiResponse = await api.getPost(params.id);
   return {
     props: {
-      post: res ? res.data : null,
+      post: apiResponse ? apiResponse.data : null,
     },
   };
 }
@@ -43,13 +44,13 @@ const EditPost = ({ post }) => {
   }
   const [state, setState] = useState(post);
   const updateAfterEdit = async () => {
-    const newData = await httpLib.getPost(post._id);
+    const newData = await api.getPost(post._id);
     if (newData.success) {
       setState(newData.data);
     }
   };
   return (
-    <Page pageType="list">
+    <Page pageType="postForm">
       <Post post={state} action="edit" afterSubmitFunc={updateAfterEdit} />
     </Page>
   );

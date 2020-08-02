@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes, { oneOfType, instanceOf } from 'prop-types';
 
+import LayoutContext from '../context/LayoutContext';
+
 import './reset.css';
+
+export const useCtxLayout = () => useContext(LayoutContext);
 
 const propTypes = {
   Component: oneOfType([
@@ -17,7 +21,18 @@ const defaultProps = {
   pageProps: {},
 };
 
-const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
+const MyApp = ({ Component, pageProps }) => {
+  const [navVisible, toggleNav] = useState(true);
+  const layoutCtx = {
+    navVisible,
+    toggleNav,
+  };
+  return (
+    <LayoutContext.Provider value={layoutCtx}>
+      <Component {...pageProps} />
+    </LayoutContext.Provider>
+  );
+};
 MyApp.propTypes = propTypes;
 MyApp.defaultProps = defaultProps;
 export default MyApp;

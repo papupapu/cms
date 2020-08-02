@@ -4,14 +4,17 @@ import Page from '../components/Layout/Page';
 
 const Home = () => (
   <Page pageType="list">
-    <p>
-      <a href="/posts">aaa</a>
-    </p>
+    <p>todos</p>
     <ul>
-      <li>list items</li>
-      <li>edit</li>
-      <li>delete</li>
-      <li>form</li>
+      <li>Modal / Dialog</li>
+      <li>
+        code review on:
+        <ul>
+          <li>APIs &amp; HTTPLib</li>
+          <li>list items</li>
+          <li>form</li>
+        </ul>
+      </li>
       <li>ContentEditable</li>
     </ul>
   </Page>

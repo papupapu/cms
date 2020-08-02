@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import Input from '../Atoms/Input';
 
 import isValidVar from '../../lib/utils/isValidVar';
-import HTTPLib from '../../lib/http';
+import Api from '../../lib/http/Post';
 
 import styles from './style.module.scss';
 
-const httpLib = new HTTPLib();
+const api = new Api();
 
 const propTypes = {
   post: PropTypes.instanceOf(Object).isRequired,
@@ -45,14 +45,14 @@ const Post = ({ post, action, afterSubmitFunc }) => {
     content: 'Contenuto obbligatorio',
   };
 
-  const handleSubitErrors = (errors = []) => {
+  const handleSubitErrors = (apiErrors = []) => {
     const newErrors = {};
-    if (!errors.length) {
+    if (!apiErrors.length) {
       Object.keys(postData).forEach((field) => {
         newErrors[field] = !isValidVar(postData[field]) ? errorMsgs[field] : '';
       });
     } else {
-      errors.forEach((field) => {
+      apiErrors.forEach((field) => {
         newErrors[field] = errorMsgs[field];
       });
     }
@@ -70,7 +70,7 @@ const Post = ({ post, action, afterSubmitFunc }) => {
   const editPost = async () => {
     const { title, subtitle, content } = postData;
     if (isValidVar(title) && isValidVar(subtitle) && isValidVar(content)) {
-      const newPost = await httpLib.editPost(post._id, {
+      const newPost = await api.editPost(post._id, {
         title,
         subtitle,
         content,
@@ -89,7 +89,7 @@ const Post = ({ post, action, afterSubmitFunc }) => {
   const createPost = async () => {
     const { title, subtitle, content } = postData;
     if (isValidVar(title) && isValidVar(subtitle) && isValidVar(content)) {
-      const newPost = await httpLib.createPost({
+      const newPost = await api.createPost({
         title,
         subtitle,
         content,

@@ -1,16 +1,19 @@
 import React from 'react';
 
+import { useCtxLayout } from '../../../pages/_app';
+
 import styles from './style.module.scss';
 
-const Header = () => (
-  <header className={styles.header}>
-    <a href="/posts" title="Lista">
-      Lista
-    </a>
-    -
-    <a href="/posts/create" title="Crea">
-      Crea
-    </a>
-  </header>
-);
+const Header = () => {
+  const { navVisible, toggleNav } = useCtxLayout();
+  const navToggle = () => toggleNav(!navVisible);
+  return (
+    <header className={styles.header}>
+      <button type="button" onClick={navToggle}>
+        menu
+      </button>
+      header
+    </header>
+  );
+};
 export default Header;

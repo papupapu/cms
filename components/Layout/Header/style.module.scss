@@ -3,9 +3,15 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 $sp;
   width: 100%;
   height: 60px;
   background: #fff;
   border-bottom: $border;
+  @media screen and (min-width: 360px) {
+    padding: 0 $mp;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 0 $lp;
+  }
 }

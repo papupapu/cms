@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import HTTPLib from '../../lib/http';
+import Api from '../../lib/http/Post';
 
 import Page from '../../components/Layout/Page';
 import List from '../../components/PostList/List';
 
-const httpLib = new HTTPLib();
+const api = new Api();
 
 export async function getStaticProps() {
-  const res = await httpLib.getPostsList();
+  const apiResponse = await api.getPostsList();
   return {
     props: {
-      posts: res.data,
+      posts: apiResponse.data,
     },
   };
 }
@@ -28,7 +28,7 @@ const PostList = ({ posts }) => {
   const [list, updateList] = useState(posts);
 
   const deletePost = async (id) => {
-    const doDelete = await httpLib.deletePost(id);
+    const doDelete = await api.deletePost(id);
     if (doDelete.success) {
       const newList = list.filter((post) => post._id !== id);
       updateList(newList);
@@ -37,7 +37,7 @@ const PostList = ({ posts }) => {
     }
   };
   return (
-    <Page pageType="list">
+    <Page pageType="postList">
       <p>{`ci sono ${list.length} post`}</p>
       <List posts={list} deleteAction={deletePost} />
     </Page>

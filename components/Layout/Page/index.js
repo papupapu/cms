@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes, { oneOfType } from 'prop-types';
 
 import Header from '../Header';
+import Menu from '../Menu';
 import Footer from '../Footer';
 
 import styles from './style.module.scss';
@@ -25,7 +26,10 @@ const Page = ({ pageType, children }) => {
   return (
     <>
       {pageType !== 'full' && <Header />}
-      <main className={styles.main}>{children}</main>
+      <div className={styles.container}>
+        <Menu />
+        <main className={styles.container__main}>{children}</main>
+      </div>
       {pageType !== 'full' && <Footer />}
     </>
   );

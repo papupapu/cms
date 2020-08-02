@@ -5,7 +5,7 @@ import Post from '../../components/Post';
 
 const CreatePost = () => {
   return (
-    <Page pageType="list">
+    <Page pageType="postForm">
       <Post
         post={{
           title: '',
