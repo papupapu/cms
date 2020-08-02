@@ -23,9 +23,12 @@ const defaultProps = {
 
 const MyApp = ({ Component, pageProps }) => {
   const [navVisible, toggleNav] = useState(true);
+  const [refreshPostsList, toggleRefreshPostsList] = useState(false);
   const layoutCtx = {
     navVisible,
     toggleNav,
+    refreshPostsList,
+    toggleRefreshPostsList,
   };
   return (
     <LayoutContext.Provider value={layoutCtx}>

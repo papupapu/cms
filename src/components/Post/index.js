@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import Input from '../Atoms/Input';
 
 import isValidVar from '../../lib/utils/isValidVar';
+import slugify from '../../lib/utils/slugify';
 import Api from '../../lib/http/Post';
+
+import { useCtxLayout } from '../../../pages/_app';
 
 import styles from './style.module.scss';
 
@@ -67,6 +70,8 @@ const Post = ({ post, action, afterSubmitFunc }) => {
     });
   };
 
+  const { toggleRefreshPostsList } = useCtxLayout();
+
   const editPost = async () => {
     const { title, subtitle, content } = postData;
     if (isValidVar(title) && isValidVar(subtitle) && isValidVar(content)) {
@@ -76,6 +81,7 @@ const Post = ({ post, action, afterSubmitFunc }) => {
         content,
       });
       if (newPost && newPost.success) {
+        toggleRefreshPostsList(true);
         afterSubmitFunc();
       } else {
         console.log(newPost.message);
@@ -89,13 +95,15 @@ const Post = ({ post, action, afterSubmitFunc }) => {
   const createPost = async () => {
     const { title, subtitle, content } = postData;
     if (isValidVar(title) && isValidVar(subtitle) && isValidVar(content)) {
+      console.log(slugify(title));
       const newPost = await api.createPost({
         title,
         subtitle,
         content,
       });
       if (newPost && newPost.success) {
-        document.location = `/posts/${newPost.id}`;
+        toggleRefreshPostsList(true);
+        afterSubmitFunc(newPost.id);
       } else {
         console.log(newPost.message);
         handleSubitErrors(Object.keys(newPost.error.errors));
