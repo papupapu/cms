@@ -6,6 +6,8 @@ const Home = () => (
   <Page pageType="list">
     <p>todos</p>
     <ul>
+      <li>Update list on build</li>
+      <li>Add slug to BE Post Model</li>
       <li>Modal / Dialog</li>
       <li>
         code review on:
