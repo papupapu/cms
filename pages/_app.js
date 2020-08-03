@@ -23,10 +23,34 @@ const defaultProps = {
 
 const MyApp = ({ Component, pageProps }) => {
   const [navVisible, toggleNav] = useState(true);
+  const [modal, toggleModal] = useState(false);
+  const [modalContent, setModalContent] = useState({});
   const [refreshPostsList, toggleRefreshPostsList] = useState(false);
+
+  const openModal = (props) => {
+    setModalContent(props);
+    if (!modal) {
+      toggleModal(true);
+    }
+  };
+  const closeModal = () => {
+    setModalContent({
+      ...modalContent,
+      fadeOut: true,
+    });
+    setTimeout(() => {
+      setModalContent({});
+      toggleModal(false);
+    }, 205);
+  };
+
   const layoutCtx = {
     navVisible,
     toggleNav,
+    modal,
+    modalContent,
+    openModal,
+    closeModal,
     refreshPostsList,
     toggleRefreshPostsList,
   };

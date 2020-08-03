@@ -1,11 +1,19 @@
 import React from 'react';
 import PropTypes, { oneOfType } from 'prop-types';
 
+import dynamic from 'next/dynamic';
+
+import { useCtxLayout } from '../../../../pages/_app';
+
 import Header from '../Header';
 import Menu from '../Menu';
 import Footer from '../Footer';
 
 import styles from './style.module.scss';
+
+const Modal = dynamic(() => import('../../components/Modal'), {
+  loading: () => <p>...</p>,
+});
 
 const propTypes = {
   pageType: PropTypes.string,
@@ -23,6 +31,7 @@ const defaultProps = {
 };
 
 const Page = ({ pageType, children }) => {
+  const { modal, modalContent } = useCtxLayout();
   return (
     <>
       {pageType !== 'full' && <Header />}
@@ -31,6 +40,7 @@ const Page = ({ pageType, children }) => {
         <main className={styles.container__main}>{children}</main>
       </div>
       {pageType !== 'full' && <Footer />}
+      {modal && <Modal {...modalContent} />}
     </>
   );
 };
