@@ -7,8 +7,7 @@ const Home = () => {
     <Page pageType="list">
       <p>todos</p>
       <ul>
-        <li>Button</li>
-        <li>Modal / Dialog</li>
+        <li>Dialog: from modal + modal styles</li>
         <li>Finish header</li>
         <li>Add slug to BE Post Model</li>
         <li>
