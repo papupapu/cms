@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 const AModal = dynamic(() => import('../components/Modal/Modals/AModal'), {
   loading: () => <p>...</p>,
 });
+
 const ASecondModal = dynamic(
   () => import('../components/Modal/Modals/ASecondModal'),
   { loading: () => <p>...</p> }

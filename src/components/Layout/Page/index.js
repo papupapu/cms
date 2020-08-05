@@ -11,7 +11,7 @@ import Footer from '../Footer';
 
 import styles from './style.module.scss';
 
-const Modal = dynamic(() => import('../../components/Modal'), {
+const Modal = dynamic(() => import('../../Modal'), {
   loading: () => <p>...</p>,
 });
 
