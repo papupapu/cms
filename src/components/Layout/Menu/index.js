@@ -6,11 +6,14 @@ import { useCtxLayout } from '../../../../pages/_app';
 
 import makeClassName from '../../../lib/utils/makeClassName';
 
+import { createAModal } from '../../../factories/modals';
+
 import styles from './style.module.scss';
 
 const Nav = () => {
-  const { navVisible } = useCtxLayout();
+  const { navVisible, openModal } = useCtxLayout();
   const cls = makeClassName([styles.nav, !navVisible && styles['nav-closed']]);
+  const modal = () => openModal(createAModal({}));
   return (
     <nav className={cls}>
       <ul>
@@ -27,6 +30,11 @@ const Nav = () => {
               Crea
             </a>
           </Link>
+        </li>
+        <li>
+          <button type="button" onClick={modal}>
+            modale
+          </button>
         </li>
       </ul>
     </nav>
