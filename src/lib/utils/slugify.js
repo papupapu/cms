@@ -1,45 +1,22 @@
-function slugify(txt) {
-  return [
-    // special letters
-    [new RegExp('[àáâãäå]', 'g'), 'a'],
-    [new RegExp('[èéêë]', 'g'), 'e'],
-    [new RegExp('[òóôõö]', 'g'), 'o'],
-    [new RegExp('[ìíîï]', 'g'), 'i'],
-    [new RegExp('[ùúûü]', 'g'), 'u'],
-    [new RegExp('[æ]', 'g'), 'ae'],
-    // url ending in '-/'
-    [new RegExp('-/$'), '/'],
-    // all non standard chars
-    [/[^\x20-\x7E]+/g, '-'],
-    // spaces
-    [/ +/g, '-'],
-    // punctuation
-    [/\.+/g, '-'],
-    [/,+/g, '-'],
-    [/:+/g, '-'],
-    [/;+/g, '-'],
-    // quotation marks
-    [/"+/g, '-'],
-    [/'+/g, '-'],
-    [/`+/g, '-'],
-    [/’+/g, ''],
-    // keyboard symbols
-    [/\++/g, '-'],
-    [/\|+/g, '-'],
-    [/–+/g, '-'],
-    [/\?+/g, '-'],
-    [/!+/g, '-'],
-    [/\*+/g, '-'],
-    [/&+/g, '-'],
-    [/\(+/g, '-'],
-    [/\)+/g, '-'],
-    [/\t+/g, '-'],
-    [/°+/g, '-'],
-    // '-/' & '/-' occurrences
-    [/-\/+/g, '-'],
-    [/\/-+/g, '/'],
-    // multiple dash occurrences
-    [/-+/g, '-'],
-  ].reduce((buf, item) => buf.replace(item[0], item[1]), txt);
+// https://gist.github.com/hagemann/382adfc57adbd5af078dc93feef01fe1
+
+function slugify(string) {
+  const a =
+    'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;';
+  const b =
+    'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------';
+  const p = new RegExp(a.split('').join('|'), 'g');
+
+  return string
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with -
+    .replace(p, (c) => b.charAt(a.indexOf(c))) // Replace special characters
+    .replace(/&/g, '-and-') // Replace & with 'and'
+    .replace(/[^\w-]+/g, '') // Remove all non-word characters
+    .replace(/--+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, ''); // Trim - from end of text
 }
+
 export default slugify;
