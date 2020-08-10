@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Page from '../../src/components/Layout/Page';
+import Heading from '../../src/components/PostList/Heading';
 import List from '../../src/components/PostList/List';
+import Pagination from '../../src/components/Atoms/Pagination';
 
 import { useCtxLayout } from '../_app';
 
@@ -53,8 +55,10 @@ const PostList = ({ posts }) => {
   };
   return (
     <Page pageType="postList">
-      <p>{`ci sono ${list.length} post`}</p>
+      <Heading />
+      <Pagination />
       <List posts={list} deleteAction={deletePost} />
+      <Pagination />
     </Page>
   );
 };

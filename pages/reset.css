@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400,500,700&display=swap');
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 /**
@@ -7,7 +9,7 @@
  */
 
 html {
-  font-family: sans-serif; /* 1 */
+  font-family: 'Cabin', sans-serif; /* 1 */
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -126,16 +128,6 @@ strong {
 
 dfn {
   font-style: italic;
-}
-
-/**
- * Address variable `h1` font-size and margin within `section` and `article`
- * contexts in Firefox 4+, Safari, and Chrome.
- */
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
 }
 
 /**

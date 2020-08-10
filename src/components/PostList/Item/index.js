@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Link from 'next/link';
+
+import TouchListener from '../../Atoms/TouchListener';
+
+import makeClassName from '../../../lib/utils/makeClassName';
 
 import styles from './style.module.scss';
 
@@ -16,29 +20,50 @@ const defaultProps = {
 };
 
 const Item = ({ post, deleteAction }) => {
+  const [open, setOpen] = useState(false);
+  const onSwipe = (swipeInfos) => {
+    const { dirX } = swipeInfos;
+    if (dirX === 'left' && !open) {
+      setOpen(true);
+    } else if (dirX === 'right' && open) {
+      setOpen(false);
+    }
+  };
+  const ctnCls = makeClassName([
+    styles.post__ctn,
+    open && styles['post__ctn--open'],
+  ]);
+  const btnCls = (action) =>
+    makeClassName([
+      styles['post__btns-btn'],
+      styles[`post__btns-btn--${action}`],
+    ]);
   const deleteMe = () => deleteAction(post._id);
   return (
-    <li className={styles.item}>
-      {post.title}
-      <div className={styles.item__btns}>
+    <TouchListener className={styles.post} action={onSwipe}>
+      <div className={ctnCls}>
+        <div className={styles.post__ctn__tit}>{post.title}</div>
+        <div className={styles.post__ctn__infos}>
+          <p className={styles['post__ctn__infos-p']}>09 ago 2020</p>
+          <p className={styles['post__ctn__infos-p']}>Bozza</p>
+          <p className={styles['post__ctn__infos-p']}>Modifica</p>
+        </div>
+      </div>
+      <div className={styles.post__btns}>
         <Link href="/posts/[id]" as={`/posts/${post._id}`}>
           <a
-            className={styles.item__btns__btn}
+            className={btnCls('edit')}
             href={`/posts/${post._id}`}
             title={post.title}
           >
             modifica
           </a>
         </Link>
-        <button
-          type="button"
-          className={styles.item__btns__btn}
-          onClick={deleteMe}
-        >
+        <button type="button" className={btnCls('delete')} onClick={deleteMe}>
           elimina
         </button>
       </div>
-    </li>
+    </TouchListener>
   );
 };
 

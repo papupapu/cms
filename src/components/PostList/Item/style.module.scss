@@ -1,31 +1,89 @@
 @import '../../../../pages/vars.scss';
 
-.item {
-  display: flex;
-  align-items: center;
-  margin: 0 0 8px;
-  padding: 0 $sp;
-  height: 48px;
-  font-size: 14px;
-  font-weight: bold;
-  background: #fff;
-  border: $border;
-  @media screen and (min-width: 768px) {
+.post {
+  position: relative;
+  height: 64px;
+  border-top: 1px solid #d8d8d8;
+  overflow: hidden;
+  &:first-of-type {
+    border-top: 0 none;
+  }
+  &__ctn {
+    position: absolute;
+    z-index: 2;
     padding: 0 $mp;
+    width: 100%;
+    height: 100%;
+    background-color: #f1f1f1;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    &--open {
+      transform: translate(-128px, 0);
+    }
+    &__tit {
+      line-height: 32px;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    &__infos {
+      display: flex;
+      justify-content: space-between;
+      line-height: 32px;
+      &-p {
+        width: calc((100% / 3) - 19px);
+        font-size: 11px;
+        font-weight: 700;
+        color: #b0b0b0;
+        text-align: center;
+        &:nth-of-type(2) {
+          position: relative;
+          width: calc((100% / 3) - 20px);
+          &:before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: -15px;
+            width: 1px;
+            height: 16px;
+            background: #e0e0e0;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            right: -15px;
+            width: 1px;
+            height: 16px;
+            background: #e0e0e0;
+          }
+        }
+      }
+    }
+  }
+  &:nth-of-type(odd) {
+    .post__ctn {
+      background-color: #e9e9e9;
+    }
   }
   &__btns {
-    margin-left: auto;
-    &__btn {
-      margin-left: 16px;
-      font-size: 12px;
-      font-weight: normal;
-      color: #000;
-      text-transform: uppercase;
-      text-decoration: none;
-      background: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    width: 128px;
+    height: 100%;
+    &-btn {
+      width: 64px;
+      height: 64px;
+      font-size: 11px;
+      color: #fff;
       border: 0 none;
-      &:hover {
-        color: #f90;
+      &--edit {
+        background: green;
+      }
+      &--delete {
+        background: red;
       }
     }
   }
