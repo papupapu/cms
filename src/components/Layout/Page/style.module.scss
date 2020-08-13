@@ -2,18 +2,30 @@
 
 .container {
   display: flex;
+  flex-flow: row nowrap;
+  width: 200vw;
+  transform: translate(-50%, 0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  @include respond(tablet) {
+    width: calc(100vw + 250px);
+    transform: translate(-250px, 0);
+  }
+  @include respond(desktop) {
+    width: auto;
+    transform: none;
+    transition: none;
+  }
+  &--open {
+    transform: translate(0, 0);
+  }
   &__main {
     flex: 1 0 0;
-    margin: 0 $sp;
-    padding: $sp 0;
+    margin: 0 $mp;
+    padding: $mp 0;
+    min-width: calc(100vw - 32px);
     min-height: calc(100vh - 240px);
-    @media screen and (min-width: 360px) {
-      margin: 0 $mp;
-      padding: $mp 0;
-    }
-    @media screen and (min-width: 1024px) {
-      margin: 0 $lp;
-      padding: $lp 0;
+    @include respond(desktop) {
+      min-width: 0;
     }
   }
 }

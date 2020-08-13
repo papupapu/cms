@@ -7,7 +7,7 @@
     line-height: 48px;
     background: #fff;
     border: $border;
-    @media screen and (min-width: 768px) {
+    @include respond(tablet) {
       padding: 0 $mp;
     }
     &_err {

@@ -1,0 +1,29 @@
+@import '../../../../pages/vars.scss';
+
+.footing {
+  padding: $mp 0;
+  border-top: $border;
+  border-bottom: $border;
+  @include respond(desktop) {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+  &__infos {
+    display: none;
+    @include respond(desktop) {
+      display: block;
+      padding: 0 0 0 $mp;
+      width: calc(50% - 17px);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 32px;
+      color: #666;
+    }
+  }
+  &__pagination {
+    @include respond(desktop) {
+      width: calc(50% - 16px);
+    }
+  }
+}

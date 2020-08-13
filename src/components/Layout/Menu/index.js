@@ -4,18 +4,15 @@ import Link from 'next/link';
 
 import { useCtxLayout } from '../../../../pages/_app';
 
-import makeClassName from '../../../lib/utils/makeClassName';
-
 import { createAModal } from '../../../factories/modals';
 
 import styles from './style.module.scss';
 
 const Nav = () => {
-  const { navVisible, openModal } = useCtxLayout();
-  const cls = makeClassName([styles.nav, !navVisible && styles['nav-closed']]);
+  const { openModal } = useCtxLayout();
   const modal = () => openModal(createAModal({}));
   return (
-    <nav className={cls}>
+    <nav className={styles.nav}>
       <ul>
         <li className={styles.nav__item}>
           <Link href="/posts">

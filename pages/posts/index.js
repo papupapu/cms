@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Page from '../../src/components/Layout/Page';
 import Heading from '../../src/components/PostList/Heading';
 import List from '../../src/components/PostList/List';
-import Pagination from '../../src/components/Atoms/Pagination';
+import Footing from '../../src/components/PostList/Footing';
 
 import { useCtxLayout } from '../_app';
 
@@ -56,9 +56,9 @@ const PostList = ({ posts }) => {
   return (
     <Page pageType="postList">
       <Heading />
-      <Pagination />
       <List posts={list} deleteAction={deletePost} />
-      <Pagination />
+
+      <Footing />
     </Page>
   );
 };

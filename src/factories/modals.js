@@ -24,3 +24,10 @@ export const createASecondModal = (props) => ({
   maxHeight: 550,
   children: <ASecondModal {...props} />,
 });
+
+export const postPreviewModal = (props) => ({
+  title: 'Post preview',
+  maxWidth: 430,
+  maxHeight: 450,
+  children: <AModal {...props} />,
+});

@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import PropTypes, { oneOfType, instanceOf } from 'prop-types';
 
+import Head from 'next/head';
+
 import LayoutContext from '../src/context/LayoutContext';
 
 import './reset.css';
@@ -22,7 +24,7 @@ const defaultProps = {
 };
 
 const MyApp = ({ Component, pageProps }) => {
-  const [navVisible, toggleNav] = useState(true);
+  const [navVisible, toggleNav] = useState(false);
   const [modal, toggleModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
   const [refreshPostsList, toggleRefreshPostsList] = useState(false);
@@ -56,6 +58,12 @@ const MyApp = ({ Component, pageProps }) => {
   };
   return (
     <LayoutContext.Provider value={layoutCtx}>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+        />
+      </Head>
       <Component {...pageProps} />
     </LayoutContext.Provider>
   );

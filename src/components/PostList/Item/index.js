@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import Link from 'next/link';
 
+import { useCtxLayout } from '../../../../pages/_app';
+
 import TouchListener from '../../Atoms/TouchListener';
+
+import { postPreviewModal } from '../../../factories/modals';
 
 import makeClassName from '../../../lib/utils/makeClassName';
 
@@ -20,6 +24,8 @@ const defaultProps = {
 };
 
 const Item = ({ post, deleteAction }) => {
+  const { openModal } = useCtxLayout();
+
   const [open, setOpen] = useState(false);
   const onSwipe = (swipeInfos) => {
     const { dirX } = swipeInfos;
@@ -38,9 +44,11 @@ const Item = ({ post, deleteAction }) => {
       styles['post__btns-btn'],
       styles[`post__btns-btn--${action}`],
     ]);
+
+  const preview = () => openModal(postPreviewModal({}));
   const deleteMe = () => deleteAction(post._id);
   return (
-    <TouchListener className={styles.post} action={onSwipe}>
+    <TouchListener className={styles.post} tagName="li" action={onSwipe}>
       <div className={ctnCls}>
         <div className={styles.post__ctn__tit}>{post.title}</div>
         <div className={styles.post__ctn__infos}>
@@ -50,6 +58,9 @@ const Item = ({ post, deleteAction }) => {
         </div>
       </div>
       <div className={styles.post__btns}>
+        <button type="button" className={btnCls('delete')} onClick={preview}>
+          preview
+        </button>
         <Link href="/posts/[id]" as={`/posts/${post._id}`}>
           <a
             className={btnCls('edit')}

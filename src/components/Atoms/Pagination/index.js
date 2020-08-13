@@ -1,9 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import makeClassName from '../../../lib/utils/makeClassName';
 
 import styles from './style.module.scss';
 
-const Pagination = () => (
-  <div className={styles.pagination}>
+const propTypes = {
+  className: PropTypes.string,
+};
+const defaultProps = {
+  className: '',
+};
+
+const Pagination = ({ className }) => (
+  <div className={makeClassName([styles.pagination, className])}>
     <button type="button" className={styles['pagination-skipbtn']}>
       &laquo;
     </button>
@@ -23,4 +33,7 @@ const Pagination = () => (
     </button>
   </div>
 );
+
+Pagination.propTypes = propTypes;
+Pagination.defaultProps = defaultProps;
 export default Pagination;

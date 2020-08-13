@@ -1,25 +1,65 @@
 @import '../../../../pages/vars.scss';
 
 .heading {
-  margin: -4px 0 $mp;
+  margin: -4px 0 0;
   &__title {
     margin-bottom: 10px;
     font-size: 24px;
     font-weight: 700;
   }
-  &__btns {
+  &__actions {
     display: flex;
     justify-content: space-between;
-    &-btn {
-      padding: 0 $sp;
-      width: calc(33% - 4px);
-      height: 32px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #b0b0b0;
-      text-align: left;
-      border: 1px solid #d8d8d8;
-      border-radius: 3px;
+    flex-flow: column nowrap;
+    @media screen and (min-width: 1024px) {
+      flex-flow: row nowrap;
+      padding: $mp 0;
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+    }
+    &__btns {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: $mp;
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 0;
+        width: calc(50% - 17px);
+      }
+      &-btn {
+        padding: 0 $sp;
+        width: calc(33% - 4px);
+        height: 32px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #b0b0b0;
+        text-align: left;
+        border: 1px solid #d8d8d8;
+        border-radius: 3px;
+        @media screen and (min-width: 1024px) {
+          width: calc(33% - 8px);
+        }
+      }
+    }
+    &__pagination {
+      padding: $mp 0;
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+      @media screen and (min-width: 1024px) {
+        position: relative;
+        padding: 0;
+        width: calc(50% - 16px);
+        border-top: 0 none;
+        border-bottom: 0 none;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -16px;
+          width: 1px;
+          height: 100%;
+          background: #d8d8d8;
+        }
+      }
     }
   }
 }

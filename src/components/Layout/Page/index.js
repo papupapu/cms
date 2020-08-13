@@ -9,6 +9,8 @@ import Header from '../Header';
 import Menu from '../Menu';
 import Footer from '../Footer';
 
+import makeClassName from '../../../lib/utils/makeClassName';
+
 import styles from './style.module.scss';
 
 const Modal = dynamic(() => import('../../Modal'), {
@@ -31,11 +33,15 @@ const defaultProps = {
 };
 
 const Page = ({ pageType, children }) => {
-  const { modal, modalContent } = useCtxLayout();
+  const { navVisible, modal, modalContent } = useCtxLayout();
+  const ctnCls = makeClassName([
+    styles.container,
+    navVisible && styles['container--open'],
+  ]);
   return (
     <>
       {pageType !== 'full' && <Header />}
-      <div className={styles.container}>
+      <div className={ctnCls}>
         <Menu />
         <main className={styles.container__main}>{children}</main>
       </div>

@@ -3,13 +3,10 @@
 .pagination {
   display: flex;
   justify-content: space-between;
-  padding: $mp 0;
-  border-top: 1px solid #d8d8d8;
-  border-bottom: 1px solid #d8d8d8;
   &-skipbtn {
     width: 48px;
     height: 32px;
-    border: 1px solid #d8d8d8;
+    border: $border;
     border-radius: 3px;
   }
   &__pgs {
@@ -19,7 +16,7 @@
     &-btn {
       width: calc(33% - 8px);
       height: 32px;
-      border: 1px solid #d8d8d8;
+      border: $border;
       border-radius: 3px;
     }
   }

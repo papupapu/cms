@@ -2,6 +2,65 @@ $sp: 8px;
 $mp: 16px;
 $lp: 24px;
 
-$background: #f1f1f1;
-$border: solid 1px #c7c8c9;
+$bg: #f1f1f1;
+$bg-dark: #e9e9e9;
+$bg-darker: #404040;
+$border: solid 1px #d8d8d8;
 $error: #f90;
+
+@mixin respond($breakpoint) {
+  @if $breakpoint==mobile {
+    @media only screen and (min-width: 360px) {
+      @content;
+    }
+  }
+  @if $breakpoint==tablet {
+    @media only screen and (min-width: 600px) {
+      @content;
+    }
+  }
+  @if $breakpoint==desktop {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  }
+}
+
+@mixin spacing($prop) {
+  #{$prop}: 8px;
+  @include respond(mobile) {
+    #{$prop}: 16px;
+  }
+  @include respond(tablet) {
+    #{$prop}: 24px;
+  }
+  @include respond(desktop) {
+    #{$prop}: 32px;
+  }
+}
+
+@mixin spacingLateral($prop) {
+  #{$prop}: 0 8px;
+  @include respond(mobile) {
+    #{$prop}: 0 16px;
+  }
+  @include respond(tablet) {
+    #{$prop}: 0 24px;
+  }
+  @include respond(desktop) {
+    #{$prop}: 0 32px;
+  }
+}
+
+@mixin spacingVertical($prop) {
+  #{$prop}: 8px 0;
+  @include respond(mobile) {
+    #{$prop}: 16px 0;
+  }
+  @include respond(tablet) {
+    #{$prop}: 24px 0;
+  }
+  @include respond(desktop) {
+    #{$prop}: 32px 0;
+  }
+}
